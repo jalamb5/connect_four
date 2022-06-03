@@ -44,8 +44,15 @@ describe GameBoard do
       end
     end
     context 'when a player chooses a column that is full' do
+      let(:full_column) { 2 }
+
+      before do
+        6.times { subject.update_board(yellow_disc, full_column) }
+      end
       it 'displays an error message' do
-        
+        expect do
+          subject.update_board(yellow_disc, full_column)
+        end.to output("Error: You can not choose a column that is full\n").to_stdout
       end
     end
   end

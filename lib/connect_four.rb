@@ -24,11 +24,16 @@ class GameBoard
 
   def update_board(player, column)
     reversed_board = board.reverse
+    full = true
     reversed_board.each do |row|
       if row[column] == '-'
         row[column] = player
+        full = false
         break
       end
+    end
+    if full == true
+      puts "Error: You can not choose a column that is full\n"
     end
     self.board = reversed_board.reverse
   end
