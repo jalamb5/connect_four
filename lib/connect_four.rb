@@ -36,6 +36,3 @@ class GameBoard
     self.board = reversed_board.reverse
   end
 end
-
-game = GameBoard.new
-p game.update_board('R', 0)
