@@ -32,9 +32,10 @@ class GameBoard
         break
       end
     end
-    if full == true
-      puts "Error: You can not choose a column that is full\n"
-    end
+    puts "Error: You can not choose a column that is full\n" if full == true
     self.board = reversed_board.reverse
   end
 end
+
+game = GameBoard.new
+p game.update_board('R', 0)
