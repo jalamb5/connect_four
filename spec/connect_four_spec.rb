@@ -49,8 +49,24 @@ end
 describe UserInput do
   describe '#validator' do
     context 'when a player chooses a valid location' do
+      let(:game_board) { GameBoard.new }
+      subject(:valid_input) { described_class.new('R', 1, game_board.board) }
       it 'returns the location' do
         # take user input, return if valid
+        subject.column == 1
+      end
+    end
+    context 'when a player chooses an invalid location' do
+      let(:full_board) { GameBoard.new }
+
+      before do
+        6.times { full_board.update_board('Y', 2) }
+      end
+
+      it 'returns error message' do
+        expect do
+          described_class.new('R', 2, full_board.board)
+        end.to output("Error: You can not choose a column that is full\n").to_stdout
       end
     end
   end
