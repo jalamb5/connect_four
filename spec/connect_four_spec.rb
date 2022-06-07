@@ -43,16 +43,14 @@ describe GameBoard do
         expect(above_row).to eq(red_disc)
       end
     end
-    context 'when a player chooses a column that is full' do
-      let(:full_column) { 2 }
+  end
+end
 
-      before do
-        6.times { subject.update_board(yellow_disc, full_column) }
-      end
-      it 'displays an error message' do
-        expect do
-          subject.update_board(yellow_disc, full_column)
-        end.to output("Error: You can not choose a column that is full\n").to_stdout
+describe UserInput do
+  describe '#validator' do
+    context 'when a player chooses a valid location' do
+      it 'returns the location' do
+        # take user input, return if valid
       end
     end
   end

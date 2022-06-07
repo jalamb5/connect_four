@@ -24,15 +24,35 @@ class GameBoard
 
   def update_board(player, column)
     reversed_board = board.reverse
-    full = true
     reversed_board.each do |row|
       if row[column] == '-'
         row[column] = player
-        full = false
         break
       end
     end
-    puts "Error: You can not choose a column that is full\n" if full == true
     self.board = reversed_board.reverse
+  end
+end
+
+# Create an object and validate it for each user's move
+class UserInput
+  def initialize(player, column, board)
+    @player = player
+    @column = validator(column)
+    @board = board
+  end
+
+  private
+
+  def validator(column, board)
+    error_message = "Error: You can not choose a column that is full\n"
+    board.each { |row| column_values << row[column] }
+    if column_values.contains?('-')
+      column
+    else
+      puts error_message
+      # call for input
+    end
+
   end
 end
