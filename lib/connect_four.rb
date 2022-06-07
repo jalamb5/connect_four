@@ -1,12 +1,6 @@
-# create a board that is 7 across by 6 down
-# create 2 players (red, yellow)
-# ask player 1 to choose a column
-# drop disc into place
-# check for a winner
-# ask player 2 to choose a column
-# drop disc into place
-# check for a winner
+# frozen_string_literal: true
 
+# Create board object that can be updated and check for winners
 class GameBoard
   attr_accessor :board
 
@@ -36,7 +30,7 @@ end
 
 # Create an object and validate it for each user's move
 class UserInput
-  attr_reader :column
+  attr_reader :column, :player
 
   def initialize(player, column, board)
     @player = player
