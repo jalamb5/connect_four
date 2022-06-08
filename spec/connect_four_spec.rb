@@ -16,7 +16,7 @@ describe GameBoard do
       end
 
       it 'drops a red disc into the selected column' do
-        updated_location = subject.board[6][player_column]
+        updated_location = subject.board[5][player_column]
         expect(updated_location).to eq(red_disc)
       end
     end
@@ -28,7 +28,7 @@ describe GameBoard do
       end
 
       it 'drops a red disc into the selected column' do
-        updated_location = subject.board[6][player_column]
+        updated_location = subject.board[5][player_column]
         expect(updated_location).to eq(yellow_disc)
       end
     end
@@ -41,8 +41,25 @@ describe GameBoard do
       end
 
       it 'places the new disc atop the existing ones' do
-        above_row = subject.board[5][used_column]
+        above_row = subject.board[4][used_column]
         expect(above_row).to eq(red_disc)
+      end
+    end
+  end
+
+  describe '#winner?' do
+    subject(:check_winner) { described_class.new }
+    context 'when a player has 4 discs in a row' do
+      before do
+        # Stack 4 discs in bottom row
+        subject.update_board('Y', 0)
+        subject.update_board('Y', 1)
+        subject.update_board('Y', 2)
+        subject.update_board('Y', 3)
+      end
+
+      it 'returns winner' do
+        expect(subject.winner?).to eq('Y')
       end
     end
   end

@@ -3,10 +3,11 @@
 # Create board object that can be updated and check for winners
 class GameBoard
   attr_accessor :board
+  attr_reader :board_header
 
   def initialize
+    @board_header = [0, 1, 2, 3, 4, 5, 6]
     @board = [
-      [0, 1, 2, 3, 4, 5, 6],
       ['-', '-', '-', '-', '-', '-', '-'],
       ['-', '-', '-', '-', '-', '-', '-'],
       ['-', '-', '-', '-', '-', '-', '-'],
@@ -25,6 +26,29 @@ class GameBoard
       end
     end
     self.board = reversed_board.reverse
+  end
+
+  def winner?
+    # check when board has 4 same colored discs (vert., horiz., diag.)
+    rowwin = row_win(board)
+    columnwin = column_win(board)
+
+    return rowwin unless rowwin.nil?
+    return columnwin unless columnwin.nil?
+  end
+
+  private
+
+  def row_win(board)
+    board.each do |row|
+      i = row.each_cons(4).find { |a| a.uniq.size == 1 && a.first != '-' }
+      return i.first unless i.nil?
+    end
+  end
+
+  def column_win(board)
+    # rotate board
+    # use row_win to find 4 in a row
   end
 end
 
