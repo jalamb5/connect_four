@@ -32,9 +32,11 @@ class GameBoard
     # check when board has 4 same colored discs (vert., horiz., diag.)
     row_winner = row_win(board)
     column_winner = column_win(board)
+    diagonal_winner = diagonal_win(board)
 
     return row_winner unless row_winner.nil?
     return column_winner unless column_winner.nil?
+    return diagonal_winner unless diagonal_winner.nil?
   end
 
   private
@@ -54,6 +56,12 @@ class GameBoard
     i = row_win(rotated_board)
     i
   end
+
+  def diagonal_win(board)
+    # create rows for each diag option
+    # use row_win to find 4 in a row
+  end
+
 end
 
 # Create an object and validate it for each user's move

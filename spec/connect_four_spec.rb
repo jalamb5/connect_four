@@ -48,6 +48,13 @@ describe GameBoard do
   end
 
   describe '#winner?' do
+    context 'when no player has 4 consecutive discs' do
+      subject(:no_winner) { described_class.new }
+      it 'returns nil' do
+        expect(subject.winner?).to be nil
+      end
+    end
+
     context 'when a player has 4 discs in a row' do
       subject(:row_winner) { described_class.new }
       before do
@@ -72,6 +79,23 @@ describe GameBoard do
 
       it 'returns winner' do
         expect(subject.winner?).to eq('R')
+      end
+    end
+
+    context 'when a player has 4 discs diagonally' do
+      subject(:diag_winner) { described_class.new }
+      before do
+        # align 4 discs diagonally
+        subject.update_board('Y', 0)
+        2.times { subject.update_board('Y', 1) }
+        2.times { subject.update_board('R', 2) }
+        subject.update_board('Y', 2)
+        3.times {subject.update_board('R', 3) }
+        subject.update_board('Y', 3)
+      end
+
+      it 'returns winner' do
+        expect(subject.winner?).to eq('Y')
       end
     end
   end
