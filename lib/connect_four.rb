@@ -30,11 +30,11 @@ class GameBoard
 
   def winner?
     # check when board has 4 same colored discs (vert., horiz., diag.)
-    rowwin = row_win(board)
-    columnwin = column_win(board)
+    row_winner = row_win(board)
+    column_winner = column_win(board)
 
-    return rowwin unless rowwin.nil?
-    return columnwin unless columnwin.nil?
+    return row_winner unless row_winner.nil?
+    return column_winner unless column_winner.nil?
   end
 
   private
@@ -44,11 +44,15 @@ class GameBoard
       i = row.each_cons(4).find { |a| a.uniq.size == 1 && a.first != '-' }
       return i.first unless i.nil?
     end
+    nil
   end
 
   def column_win(board)
     # rotate board
+    rotated_board = board.transpose.reverse
     # use row_win to find 4 in a row
+    i = row_win(rotated_board)
+    i
   end
 end
 

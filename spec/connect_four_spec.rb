@@ -48,8 +48,8 @@ describe GameBoard do
   end
 
   describe '#winner?' do
-    subject(:check_winner) { described_class.new }
     context 'when a player has 4 discs in a row' do
+      subject(:row_winner) { described_class.new }
       before do
         # Stack 4 discs in bottom row
         subject.update_board('Y', 0)
@@ -60,6 +60,18 @@ describe GameBoard do
 
       it 'returns winner' do
         expect(subject.winner?).to eq('Y')
+      end
+    end
+
+    context 'when a player has 4 discs in a column' do
+      subject(:column_winner) { described_class.new }
+      before do
+        # Stack 4 discs in column 1
+        4.times { subject.update_board('R', 1) }
+      end
+
+      it 'returns winner' do
+        expect(subject.winner?).to eq('R')
       end
     end
   end
