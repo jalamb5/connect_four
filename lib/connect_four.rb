@@ -49,7 +49,7 @@ class GameBoard
 
   def column_win(board)
     # rotate board
-    rotated_board = board.transpose.reverse
+    rotated_board = board.transpose
     # use row_win to find 4 in a row
     i = row_win(rotated_board)
     i
