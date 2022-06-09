@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-require_relative '../lib/connect_four'
+require_relative '../lib/game_board'
+require_relative '../lib/user_input'
 
 describe GameBoard do
   describe '#update_board' do
@@ -90,7 +91,7 @@ describe GameBoard do
         2.times { subject.update_board('Y', 1) }
         2.times { subject.update_board('R', 2) }
         subject.update_board('Y', 2)
-        3.times {subject.update_board('R', 3) }
+        3.times { subject.update_board('R', 3) }
         subject.update_board('Y', 3)
       end
 

@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative '../lib/user_input'
+
 # Create board object that can be updated and check for winners
 class GameBoard
   attr_accessor :board
@@ -53,37 +55,11 @@ class GameBoard
     # rotate board
     rotated_board = board.transpose
     # use row_win to find 4 in a row
-    i = row_win(rotated_board)
-    i
+    row_win(rotated_board)
   end
 
   def diagonal_win(board)
     # create rows for each diag option
     # use row_win to find 4 in a row
-  end
-
-end
-
-# Create an object and validate it for each user's move
-class UserInput
-  attr_reader :column, :player
-
-  def initialize(player, column, board)
-    @player = player
-    @column = validator(column, board)
-    @board = board
-  end
-
-  private
-
-  def validator(column, board)
-    error_message = "Error: You can not choose a column that is full\n"
-    column_values = []
-    board.each { |row| column_values << row[column] }
-    if column_values.include?('-')
-      column
-    else
-      puts error_message
-    end
   end
 end
