@@ -15,6 +15,9 @@ class Game
   def play_game(board)
     puts 'Welcome to connect four'
     game_loop(board) until board.winner?
+    winner = board.winner?
+    board.print_board
+    puts "#{winner} wins!"
     puts 'Thanks for playing!'
   end
 
