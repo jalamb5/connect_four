@@ -8,7 +8,7 @@ class GameBoard
   attr_reader :board_header
 
   def initialize
-    @board_header = [0, 1, 2, 3, 4, 5, 6]
+    @board_header = %w[0 1 2 3 4 5 6]
     @board = [
       ['-', '-', '-', '-', '-', '-', '-'],
       ['-', '-', '-', '-', '-', '-', '-'],
@@ -17,6 +17,13 @@ class GameBoard
       ['-', '-', '-', '-', '-', '-', '-'],
       ['-', '-', '-', '-', '-', '-', '-']
     ]
+  end
+
+  def print_board
+    puts board_header.to_s
+    board.each do |row|
+      puts row.to_s
+    end
   end
 
   def update_board(player, column)
@@ -34,11 +41,9 @@ class GameBoard
     # check when board has 4 same colored discs (vert., horiz., diag.)
     row_winner = row_win(board)
     column_winner = column_win(board)
-    diagonal_winner = diagonal_win(board)
 
     return row_winner unless row_winner.nil?
     return column_winner unless column_winner.nil?
-    return diagonal_winner unless diagonal_winner.nil?
   end
 
   private
@@ -56,10 +61,5 @@ class GameBoard
     rotated_board = board.transpose
     # use row_win to find 4 in a row
     row_win(rotated_board)
-  end
-
-  def diagonal_win(board)
-    # create rows for each diag option
-    # use row_win to find 4 in a row
   end
 end

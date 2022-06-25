@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require_relative '../lib/game_board'
-
 # Create an object and validate it for each user's move
 class UserInput
   attr_reader :column, :player
@@ -17,6 +15,7 @@ class UserInput
   def validator(column, board)
     error_message = "Error: You can not choose a column that is full\n"
     column_values = []
+    column = column.to_i
     board.each { |row| column_values << row[column] }
     if column_values.include?('-')
       column
