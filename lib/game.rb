@@ -34,8 +34,7 @@ class Game
     puts 'Choose a column'
     move = gets.chomp.to_i
     board.update_board(player, move)
-    # else
-    #   player_move(player, board)
+    # TODO: validate input
   end
 end
 

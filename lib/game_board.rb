@@ -41,6 +41,7 @@ class GameBoard
     # check when board has 4 same colored discs (vert., horiz., diag.)
     row_winner = row_win(board)
     column_winner = column_win(board)
+    # TODO: check for diagonal winner
 
     return row_winner unless row_winner.nil?
     return column_winner unless column_winner.nil?
