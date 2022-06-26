@@ -8,7 +8,7 @@ class GameBoard
   attr_reader :board_header, :board_divider
 
   def initialize
-    @board_divider = '============================'
+    @board_divider = '==================================='
     @board_header = %w[0 1 2 3 4 5 6]
     @board = [
       ['-', '-', '-', '-', '-', '-', '-'],
@@ -23,6 +23,7 @@ class GameBoard
   def print_board
     puts board_divider
     puts board_header.to_s
+    puts board_divider
     board.each do |row|
       puts row.to_s
     end
