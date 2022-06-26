@@ -37,8 +37,8 @@ class Game
     move = gets.chomp
     # validate input
     validated_move = UserInput.new(player, move, board.board)
-    player_move(player, board) if validated_move.column == false
-    board.update_board(validated_move.player, validated_move.column)
+    board.update_board(validated_move.player, validated_move.column) unless validated_move.column.nil?
+    player_move(player, board) if validated_move.column.nil?
   end
 end
 

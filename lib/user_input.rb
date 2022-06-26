@@ -20,7 +20,6 @@ class UserInput
     if column_values.include?('-')
       column
     else
-      column = false
       puts error_message
     end
   end
