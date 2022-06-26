@@ -5,9 +5,10 @@ require_relative '../lib/user_input'
 # Create board object that can be updated and check for winners
 class GameBoard
   attr_accessor :board
-  attr_reader :board_header
+  attr_reader :board_header, :board_divider
 
   def initialize
+    @board_divider = '='
     @board_header = %w[0 1 2 3 4 5 6]
     @board = [
       ['-', '-', '-', '-', '-', '-', '-'],
@@ -20,10 +21,12 @@ class GameBoard
   end
 
   def print_board
+    puts board_divider
     puts board_header.to_s
     board.each do |row|
       puts row.to_s
     end
+    puts board_divider
   end
 
   def update_board(player, column)

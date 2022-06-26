@@ -26,15 +26,19 @@ class Game
     puts 'Player Y'
     player_move('Y', board)
     board.print_board
+    return if board.winner?
+
     puts 'Player R'
     player_move('R', board)
   end
 
   def player_move(player, board)
     puts 'Choose a column'
-    move = gets.chomp.to_i
-    board.update_board(player, move)
-    # TODO: validate input
+    move = gets.chomp
+    # validate input
+    validated_move = UserInput.new(player, move, board.board)
+    player_move(player, board) if validated_move.column == false
+    board.update_board(validated_move.player, validated_move.column)
   end
 end
 
