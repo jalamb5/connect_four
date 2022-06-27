@@ -2,8 +2,6 @@
 
 require_relative '../lib/user_input'
 
-require 'matrix'
-
 # Create board object that can be updated and check for winners
 class GameBoard
   attr_accessor :board
