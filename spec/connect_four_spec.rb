@@ -95,7 +95,24 @@ describe GameBoard do
         subject.update_board('Y', 3)
       end
 
-      xit 'returns winner' do
+      it 'returns winner' do
+        expect(subject.winner?).to eq('Y')
+      end
+    end
+
+    context 'when a player has 4 discs antediagonally' do
+      subject(:ante_diag_winner) { described_class.new }
+      before do
+        # align 4 discs diagonally
+        3.times { subject.update_board('R', 3) }
+        subject.update_board('Y', 3)
+        2.times { subject.update_board('R', 2) }
+        subject.update_board('Y', 2)
+        2.times { subject.update_board('Y', 1) }
+        subject.update_board('Y', 0)
+      end
+
+      it 'returns winner' do
         expect(subject.winner?).to eq('Y')
       end
     end

@@ -2,6 +2,8 @@
 
 require_relative '../lib/user_input'
 
+require 'matrix'
+
 # Create board object that can be updated and check for winners
 class GameBoard
   attr_accessor :board
@@ -45,10 +47,11 @@ class GameBoard
     # check when board has 4 same colored discs (vert., horiz., diag.)
     row_winner = row_win(board)
     column_winner = column_win(board)
-    # TODO: check for diagonal winner
+    diag_winner = row_win(diagonals(board))
 
     return row_winner unless row_winner.nil?
     return column_winner unless column_winner.nil?
+    return diag_winner unless diag_winner.nil?
   end
 
   private
@@ -66,5 +69,18 @@ class GameBoard
     rotated_board = board.transpose
     # use row_win to find 4 in a row
     row_win(rotated_board)
+  end
+
+  def diagonals(board)
+    padding = board.size - 1
+    padded_matrix = []
+
+    board.each do |row|
+      inverse_padding = board.size - padding
+      padded_matrix << ([nil] * inverse_padding) + row + ([nil] * padding)
+      padding -= 1
+    end
+
+    padded_matrix.transpose.map(&:compact)
   end
 end
